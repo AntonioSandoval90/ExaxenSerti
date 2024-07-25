@@ -1,6 +1,7 @@
 package com.prueba.pokemon.web.rest;
 
 import com.prueba.pokemon.dto.InformacionPokemonDTO;
+import com.prueba.pokemon.dto.PokemonDTO;
 import com.prueba.pokemon.service.PokemonService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/examen")
@@ -29,5 +32,12 @@ public class PokemonResource {
 
         log.debug("REST request to get Informacion de Pokemon con ID: {} ", id);
         return pokemonService.obtenerInformacionPokemon(id);
+    }
+
+    @GetMapping("/pokemon/nombre/{nombre}")
+    public List<PokemonDTO> getPokemon(@PathVariable String nombre) {
+
+        log.debug("REST request to get Informacion de Pokemon con Nombre: {} ", nombre);
+        return pokemonService.findByName(nombre);
     }
 }

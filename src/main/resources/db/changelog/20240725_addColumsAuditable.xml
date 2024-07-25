@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20240725_addColumsAuditable_1" author="AntonioSandoval">
+        <addColumn tableName="pokemon">
+            <column name="createdDate" type="Date">
+                <constraints nullable="true"/>
+            </column>
+            <column name="lastModifiedDate" type="Date">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20240725_addColumsAuditable_2" author="AntonioSandoval">
+        <addColumn tableName="habilidades">
+            <column name="createdDate" type="Date">
+                <constraints nullable="true"/>
+            </column>
+            <column name="lastModifiedDate" type="Date">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="20240725_addColumsAuditable_3" author="AntonioSandoval">
+        <addColumn tableName="evoluciones">
+            <column name="createdDate" type="Date">
+                <constraints nullable="true"/>
+            </column>
+            <column name="lastModifiedDate" type="Date">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

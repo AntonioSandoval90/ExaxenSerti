@@ -10,6 +10,8 @@ public class PokemonDTO implements Serializable {
 
     private String nombre;
 
+    public PokemonDTO(){};
+
     public PokemonDTO(String nombre) {
         this.nombre = nombre;
     }

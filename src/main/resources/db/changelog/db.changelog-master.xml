@@ -10,5 +10,6 @@
     <include file="20240725025811_added_entity_Evoluciones.xml" relativeToChangelogFile="true"/>
     <include file="20240725025810_added_entity_constraints_Habilidades.xml" relativeToChangelogFile="true"/>
     <include file="20240725025811_added_entity_constraints_Evoluciones.xml" relativeToChangelogFile="true"/>
+    <include file="20240725_addColumsAuditable.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

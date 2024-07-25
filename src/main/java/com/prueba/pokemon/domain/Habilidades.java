@@ -1,6 +1,7 @@
 package com.prueba.pokemon.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.prueba.pokemon.dto.Auditable;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import org.hibernate.annotations.Cache;
@@ -12,8 +13,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Table(name = "habilidades")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SuppressWarnings("common-java:DuplicatedBlocks")
-public class Habilidades implements Serializable {
+public class Habilidades extends Auditable implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

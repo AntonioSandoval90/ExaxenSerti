@@ -10,10 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PokemonService {
@@ -89,7 +92,9 @@ public class PokemonService {
 
             PokemonApiDTO pokemonDTO = getInfPokemon(cadenaEvolucion.get(0));
 
-            guardarInfBaseDatos(pokemonDTO, cadenaEvolucion);
+            if(validarExistente(pokemonDTO.getName())){
+                guardarInfBaseDatos(pokemonDTO, cadenaEvolucion);
+            }
 
             return new InformacionPokemonDTO(
                     pokemonDTO.getId(),
@@ -125,10 +130,23 @@ public class PokemonService {
         );
     }
 
+    public boolean validarExistente(String nombre){
+        return findByName(nombre).isEmpty();
+    }
+
+
     public PokemonDTO save(PokemonDTO pokemonDTO) {
         log.debug("Request to save Pokemon : {}", pokemonDTO);
         Pokemon pokemon = pokemonMapper.toEntity(pokemonDTO);
         pokemon = pokemonRepository.save(pokemon);
         return pokemonMapper.toDto(pokemon);
+    }
+
+    @Transactional(readOnly = true)
+    public List<PokemonDTO> findByName(String nombrePokemon) {
+        log.debug("Request to get Pokemon : {}", nombrePokemon);
+        return pokemonRepository.findByNombre(nombrePokemon).stream()
+                .map(PokemonMapper::toDTO)
+                .collect(Collectors.toList());
     }
 }
