@@ -1,31 +1,46 @@
 package com.prueba.pokemon.dto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class AbilityDTO {
 
-    private String name;
-    private String url;
+    @JsonProperty("ability")
+    private AbilityNameDTO abilityName;
 
-    public String getName() {
-        return name;
+    @JsonProperty("is_hidden")
+    private boolean isHidden;
+
+    private int slot;
+
+    public AbilityNameDTO getAbilityName() {
+        return abilityName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAbilityName(AbilityNameDTO abilityName) {
+        this.abilityName = abilityName;
     }
 
-    public String getUrl() {
-        return url;
+    public boolean isHidden() {
+        return isHidden;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setHidden(boolean hidden) {
+        isHidden = hidden;
+    }
+
+    public int getSlot() {
+        return slot;
+    }
+
+    public void setSlot(int slot) {
+        this.slot = slot;
     }
 
     @Override
     public String toString() {
         return "Ability{" +
-                "name='" + name + '\'' +
-                ", url='" + url + '\'' +
+                "abilityName=" + abilityName +
+                ", isHidden=" + isHidden +
+                ", slot=" + slot +
                 '}';
     }
 }

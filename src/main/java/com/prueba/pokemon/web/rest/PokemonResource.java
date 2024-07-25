@@ -1,8 +1,7 @@
 package com.prueba.pokemon.web.rest;
 
-import com.prueba.pokemon.dto.PokemonDTO;
+import com.prueba.pokemon.dto.InformacionPokemonDTO;
 import com.prueba.pokemon.service.PokemonService;
-import org.apache.coyote.BadRequestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/examen")
@@ -28,10 +25,9 @@ public class PokemonResource {
     }
 
     @GetMapping("/pokemon/{id}")
-    public List<String> getPrueba(@PathVariable int id) throws BadRequestException {
+    public InformacionPokemonDTO getPrueba(@PathVariable int id) {
 
-        List<String> pokemonChainList = pokemonService.getEvolutionChain(id);
-        log.debug("REST request to get all User for an admin: {} ", pokemonChainList);
-        return pokemonChainList;
+        log.debug("REST request to get Informacion de Pokemon con ID: {} ", id);
+        return pokemonService.obtenerInformacionPokemon(id);
     }
 }

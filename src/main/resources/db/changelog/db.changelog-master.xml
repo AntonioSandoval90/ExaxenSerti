@@ -5,6 +5,10 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <include file="changeset-001.xml" relativeToChangelogFile="true"/>
+    <include file="20240725025809_added_entity_Pokemon.xml" relativeToChangelogFile="true"/>
+    <include file="20240725025810_added_entity_Habilidades.xml" relativeToChangelogFile="true"/>
+    <include file="20240725025811_added_entity_Evoluciones.xml" relativeToChangelogFile="true"/>
+    <include file="20240725025810_added_entity_constraints_Habilidades.xml" relativeToChangelogFile="true"/>
+    <include file="20240725025811_added_entity_constraints_Evoluciones.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

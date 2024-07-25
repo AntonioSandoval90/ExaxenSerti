@@ -1,35 +1,62 @@
 package com.prueba.pokemon.dto;
 
-import java.util.List;
-
-public class PokemonDTO {
-
-    private int id;
-
-    private String name;
+import java.io.Serializable;
+import java.util.Objects;
 
 
-    public int getId() {
+public class PokemonDTO implements Serializable {
+
+    private Integer id;
+
+    private String nombre;
+
+    public PokemonDTO(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof PokemonDTO)) {
+            return false;
+        }
+
+        PokemonDTO pokemonDTO = (PokemonDTO) o;
+        if (this.id == null) {
+            return false;
+        }
+        return Objects.equals(this.id, pokemonDTO.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
+    }
+
+    // prettier-ignore
+    @Override
     public String toString() {
         return "PokemonDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+                "id=" + getId() +
+                ", nombre='" + getNombre() + "'" +
+                "}";
     }
 }
