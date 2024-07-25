@@ -7,12 +7,16 @@ import java.util.stream.Collectors;
 
 import com.prueba.pokemon.domain.Habilidades;
 import com.prueba.pokemon.dto.HabilidadesDTO;
+import com.prueba.pokemon.dto.PokemonDTO;
 import com.prueba.pokemon.repository.HabilidadesRepository;
 import com.prueba.pokemon.service.mapper.HabilidadesMapper;
+import com.prueba.pokemon.service.mapper.PokemonMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.prueba.pokemon.domain.Pokemon;
 
 
 @Service
@@ -24,6 +28,9 @@ public class HabilidadesService {
     private final HabilidadesRepository habilidadesRepository;
 
     private final HabilidadesMapper habilidadesMapper;
+
+    @Autowired
+    private PokemonMapper pokemonMapper;
 
     public HabilidadesService(HabilidadesRepository habilidadesRepository, HabilidadesMapper habilidadesMapper) {
         this.habilidadesRepository = habilidadesRepository;
@@ -74,5 +81,12 @@ public class HabilidadesService {
     public void delete(Integer id) {
         log.debug("Request to delete Habilidades : {}", id);
         habilidadesRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Habilidades> findHabilidadByPokemon(PokemonDTO pokemonDTO) {
+        log.debug("Request to get Habilidades By Pokemon: {}", pokemonDTO);
+        Pokemon pokemon = pokemonMapper.toEntity(pokemonDTO);
+        return habilidadesRepository.findByPokemon(pokemon);
     }
 }

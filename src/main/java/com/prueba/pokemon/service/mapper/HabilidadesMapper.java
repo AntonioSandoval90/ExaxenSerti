@@ -17,4 +17,6 @@ public interface HabilidadesMapper extends EntityMapper<HabilidadesDTO, Habilida
     PokemonDTO toDtoPokemonId(Pokemon pokemon);
 
     Habilidades toEntity(HabilidadesDTO habilidadesDTO);
+
+
 }
